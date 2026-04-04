@@ -1,0 +1,21 @@
+#include <unordered_map>
+#include <vector>
+using namespace std;
+
+class Solution{
+public:
+    vector<int> anagramMappings(vector<int>& nums1, vector<int>& nums2)
+    {
+        unordered_map<int, int> hm;
+        vector<int> mapping;
+        for (int i = 0; i < nums2.size(); i++)
+        {
+            hm[nums2[i]] = i;
+        }
+        for (int i = 0; i < nums1.size(); i++)
+        {
+            mapping.push_back(hm[nums1[i]]);
+        }
+        return mapping;
+    }
+};
