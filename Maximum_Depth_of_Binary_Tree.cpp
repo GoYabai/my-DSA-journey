@@ -12,6 +12,7 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+//BFS
 class Solution
 {
 public:
@@ -43,5 +44,17 @@ public:
             h++;
         }
         return h;
+    }
+};
+
+//DFS
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if (!root)
+        {
+            return 0;
+        }
+        return 1 + max(maxDepth(root->left), maxDepth(root->right));
     }
 };
