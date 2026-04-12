@@ -1,3 +1,5 @@
+#include <queue>
+using namespace std;
 
 struct TreeNode
 {
@@ -9,6 +11,7 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+//DFS
 class Solution
 {
 public:
@@ -32,5 +35,44 @@ public:
             return false;
         }
         return dfs(p->left, q->left) && dfs(p->right, q->right);
+    }
+};
+
+//BFS
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        return bfs(p, q);
+    }
+
+    bool bfs(TreeNode* p, TreeNode* q)
+    {
+        queue<TreeNode*> qp;
+        queue<TreeNode*> qq;
+        qp.push(p);
+        qq.push(q);
+        while (!qp.empty() && !qq.empty())
+        {
+            TreeNode* a = qp.front(); qp.pop();
+            TreeNode* b = qq.front(); qq.pop();
+            if (a == nullptr && b == nullptr)
+            {
+                continue;
+            }
+            if (a == nullptr || b == nullptr)
+            {
+                return false;
+            }
+            if (a->val != b->val)
+            {
+                return false;
+            }
+            qp.push(a->left);
+            qq.push(b->left);
+            
+            qp.push(a->right);
+            qq.push(b->right);
+        }
+        return qp.empty() && qq.empty();
     }
 };
