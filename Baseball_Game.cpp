@@ -5,6 +5,7 @@
 using namespace std;
 
 
+
 class Solution {
 public:
     int calPoints(vector<string>& operations) {
@@ -41,5 +42,6 @@ public:
             mystack.pop();
         }
         return ans;
+
     }
 };
